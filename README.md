@@ -1,6 +1,6 @@
 # Sistema de Notificaciones
 
-Este proyecto consiste en una aplicación orientada a la gestión y notificación de alertas, implementada completamente en TypeScript. La aplicación está diseñada siguiendo los principios de Domain-Driven Design (DDD) y la programación orientada a objetos, con un enfoque en la claridad del código y en la aplicación de patrones de diseño y principios SOLID.
+Este proyecto consiste en una aplicación orientada a la gestión y notificación de alertas, implementada completamente en TypeScript. La aplicación está diseñada siguiendo los principios de Domain-Driven Design (DDD) y la programación orientada a objetos, con un enfoque en la claridad del código y en la aplicación de patrones de diseño y principios SOLID. El proyecto ha sido diseñado con un enfoque en la claridad del código y la adherencia a principios de diseño de software aplicando patrones y principios con el fin de mejorar la extensibilidad y el mantenimiento del sistema.
 
 ## Diseño y Arquitectura
 ### Domain-Driven Design (DDD)
