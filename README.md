@@ -2,7 +2,7 @@
 
 Este proyecto consiste en una aplicación orientada a la gestión y notificación de alertas, implementada completamente en TypeScript. La aplicación está diseñada siguiendo los principios de Domain-Driven Design (DDD) y la programación orientada a objetos, con un enfoque en la claridad del código y en la aplicación de patrones de diseño y principios SOLID.
 
-##Diseño y Arquitectura
+## Diseño y Arquitectura
 ### Domain-Driven Design (DDD)
 El diseño del sistema está basado en los principios de DDD, que enfatiza la separación de las distintas áreas de responsabilidad y el modelado del dominio de manera que refleje la realidad del problema. 
 
@@ -19,7 +19,7 @@ El diseño del sistema está basado en los principios de DDD, que enfatiza la se
 3. AlertRepository: Gestiona las alertas en memoria, permitiendo añadir y recuperar alertas sin preocuparse por los detalles de almacenamiento.
 
 ### Principios SOLID aplicados
-Single Responsibility Principle (SRP): Cada clase en el sistema tiene una única responsabilidad. Por ejemplo:AlertSorter se encarga de ordenar alertas según diferentes criterios, pero el ordenamiento especifico de cada tipo de alerta, se encarga cada clase que ordena el tipo de alerta.
+- Single Responsibility Principle (SRP): Cada clase en el sistema tiene una única responsabilidad. Por ejemplo:AlertSorter se encarga de ordenar alertas según diferentes criterios, pero el ordenamiento especifico de cada tipo de alerta, se encarga cada clase que ordena el tipo de alerta.
 
 - Open/Closed Principle (OCP): Las clases están abiertas para la extensión pero cerradas para la modificación. Los métodos de clasificación de alertas (UrgentAlertSortingStrategy e InformativeAlertSortingStrategy) se extienden mediante la implementación de la interfaz SortStrategy, lo que permite añadir nuevas estrategias de clasificación sin modificar el código existente. Tambien tenemos el caso de las alertas en si, que definí una clase abstracta Alerta y luego para cada tipo se crea una clase nueva sin tener que modificar la logica de Alerta, para este caso en cuestión no da un gran aporte pero si plantearamos algun tipo de logica segun el tipo, que es muy probable que suceda, tener este diseño de clases nos ayudaria para poder extender la logica de Alerta sin estar modificando la clase.
 
