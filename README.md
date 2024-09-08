@@ -13,11 +13,10 @@ El diseño del sistema está basado en los principios de DDD, que enfatiza la se
 
 - Observer Pattern: Implementado en el sistema de suscripción a temas. Los usuarios (Subscriber) se suscriben a un tema (Publisher) y reciben notificaciones cuando se envían nuevas alertas. La interfaz Publisher define los métodos para suscribir, desuscribir y notificar a los suscriptores.
 
-- Repository Pattern: Se utiliza para encapsular la lógica de acceso a datos, proporcionando una interfaz para interactuar con las entidades del dominio sin exponer los detalles de almacenamiento. En este proyecto no tenemos persistencia por lo que repository no se encarga de comunicarse con ningun gestor de base de datos sino que trabaja en memoria por cada ejecución que hacemos, podria haber hecho una clase DB para simular una base de datos en memoria pero no lo vi necesario:
+- Repository Pattern: Se utiliza para encapsular la lógica de acceso a datos, proporcionando una interfaz para interactuar con las entidades del dominio sin exponer los detalles de almacenamiento. El uso del patrón Repository ayuda a mantener el código limpio y desacoplado, permitiendo que la lógica de negocio se enfoque en el dominio sin tener que lidiar con los detalles de la persistencia. En este proyecto no tenemos persistencia por lo que repository no se encarga de comunicarse con ningun gestor de base de datos sino que trabaja en memoria por cada ejecución que hacemos, podria haber hecho una clase DB para simular una base de datos en memoria pero no lo vi necesario:
 1. UserRepository: Encapsula la lógica para gestionar usuarios en memoria, proporcionando métodos para registrar y recuperar usuarios.
 2. TopicRepository: Maneja la gestión de temas en memoria, incluyendo operaciones de recuperación de temas.
 3. AlertRepository: Gestiona las alertas en memoria, permitiendo añadir y recuperar alertas sin preocuparse por los detalles de almacenamiento.
-El uso del patrón Repository ayuda a mantener el código limpio y desacoplado, permitiendo que la lógica de negocio se enfoque en el dominio sin tener que lidiar con los detalles de la persistencia
 
 ### Principios SOLID aplicados
 Single Responsibility Principle (SRP): Cada clase en el sistema tiene una única responsabilidad. Por ejemplo:AlertSorter se encarga de ordenar alertas según diferentes criterios, pero el ordenamiento especifico de cada tipo de alerta, se encarga cada clase que ordena el tipo de alerta.
