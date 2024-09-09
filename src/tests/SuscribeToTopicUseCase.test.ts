@@ -1,4 +1,4 @@
-// SubscribeToTopicUseCase.test.ts
+// Los usuarios pueden optar sobre cuales temas quieren recibir alertas.
 
 import { UserRepository } from '../core/repositories/UserRepository';
 import { TopicRepository } from '../core/repositories/TopicRepository';
