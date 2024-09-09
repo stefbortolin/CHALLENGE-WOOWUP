@@ -16,19 +16,19 @@ export abstract class Alert {
         this.creationDate = creationDate;
         this.expirationDate = expirationDate;
     }
-
+    // Método para verificar si la alerta ha expirado, mediante la comparación entre la fecha actual y la de expiración.
     public isExpired(): boolean {
         return this.expirationDate < new Date();
     }
-
+    // Método para comprobar si la alerta es para todos los suscriptores de un tema, las que sean para un usuario en especifico tendran el topic en null.
     public isForTopicSuscribers(): boolean{
         return this.topic !== null;
     }
-
+    // Método para comprobar si la alerta es para un usuario en concreto, las que sean para todos los usuarios de un tema tendran el user en null.
     public isForSpecificUser(): boolean{
         return this.user !== null;
     }
-    // Getters
+    // GETTERS Y SETTERS
     public getMessage(): string {
         return this.message.getMessage();
     }
@@ -49,7 +49,6 @@ export abstract class Alert {
         return this.expirationDate;
     }
 
-    // Setters
     public setMessage(message: AlertMessage): void {
         this.message = message;
     }

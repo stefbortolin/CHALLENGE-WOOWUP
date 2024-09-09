@@ -1,6 +1,6 @@
 import { Alert } from "../domain/interface/Alert";
 
-
+// Repositorio para las alertas, al igual que los demas repositorios trabajan en memoria directo, es ideal para luego implementar una conexion a base de datos y no afectar el resto del codigo y partes del sistema.
 export class AlertRepository {
     private alerts: Alert[] = [];
 

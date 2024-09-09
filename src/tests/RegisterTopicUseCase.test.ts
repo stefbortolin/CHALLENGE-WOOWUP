@@ -14,7 +14,7 @@ describe('RegisterTopicUseCase', () => {
   });
 
   it('should register a new topic successfully', () => {
-    const topicName = 'News';
+    const topicName = 'General';
     const newTopic = registerTopicUseCase.execute(topicName);
 
     expect(newTopic).toBeInstanceOf(Topic);
@@ -23,7 +23,7 @@ describe('RegisterTopicUseCase', () => {
   });
 
   it('should throw an error if the topic already exists', () => {
-    const topicName = 'News';
+    const topicName = 'General';
     registerTopicUseCase.execute(topicName);
 
     expect(() => registerTopicUseCase.execute(topicName)).toThrowError('Topic already exists');

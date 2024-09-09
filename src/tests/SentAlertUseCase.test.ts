@@ -21,24 +21,22 @@ describe('SendAlertUseCase', () => {
         sendAlertUseCase = new SendAlertUseCase(alertRepository);
         alertFactory = new AlertFactory();
 
-        // Crear tema y usuarios
         topic = new Topic('General');
         user1 = new User('User1');
         user2 = new User('User2');
 
-        // Suscribir usuarios al tema
         topic.subscribe(user1);
         topic.subscribe(user2);
     });
 
     test('should send an alert to all subscribers of the topic', () => {
         const creationDate = new Date();
-        const expirationDate = new Date(creationDate.getTime() + 1000000); // 1,000,000 ms later
+        const expirationDate = new Date(creationDate.getTime() + 1000000); 
 
         sendAlertUseCase.execute(
             AlertType.URGENT,
             'Urgent alert message',
-            null, // No user, so alert is for topic
+            null, 
             topic,
             creationDate,
             expirationDate

@@ -1,5 +1,6 @@
 import { Topic } from '../domain/entities/Topic';
 
+// Repositorio para los temas, al igual que los demas repositorios trabajan en memoria directo, es ideal para luego implementar una conexion a base de datos y no afectar el resto del codigo.
 export class TopicRepository {
   private topics: Topic[] = [];
 

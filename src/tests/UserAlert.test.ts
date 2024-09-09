@@ -42,9 +42,7 @@ describe('User Alerts', () => {
 
     test('should retrieve all unread non-expired alerts for a user, sorted correctly', () => {
         const nonExpiredAlerts = user1.getUnreadNonExpiredAlerts();
-        nonExpiredAlerts.forEach((alert, index) => {
-            console.log(`Alert ${index + 1}: ${alert.getMessage()}`);
-        });
+
         expect(nonExpiredAlerts.length).toBe(5);
         expect(nonExpiredAlerts[0].getMessage()).toBe('Urgent 2');
         expect(nonExpiredAlerts[1].getMessage()).toBe('Urgent 1');

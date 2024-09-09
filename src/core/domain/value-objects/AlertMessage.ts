@@ -1,3 +1,4 @@
+// Value object utilizado para chequear que no se creen alertas vacías y tener un control para una posible extension para verificaciones sobre este mensaje de alerta.
 export class AlertMessage {
     private readonly message: string;
 

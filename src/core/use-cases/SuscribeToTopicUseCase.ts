@@ -1,6 +1,7 @@
 import { UserRepository } from '../repositories/UserRepository';
 import { TopicRepository } from '../repositories/TopicRepository';
 
+// Use case para suscribir un usuario a un tema, se encarga de verificar que el usuario y el tema existan y en caso de que existan los suscribe.
 export class SubscribeToTopicUseCase {
     private userRepository: UserRepository;
     private topicRepository: TopicRepository;
