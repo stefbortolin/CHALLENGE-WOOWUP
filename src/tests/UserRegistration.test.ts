@@ -1,11 +1,12 @@
 //Se pueden registrar usuarios que recibirán alertas. 
 
 import { User } from "../core/domain/entities/User";
+import { IUserRepository } from "../core/repositories/interfaces/IUserRepository";
 import { UserRepository } from "../core/repositories/UserRepository";
 import { RegisterUserUseCase } from "../core/use-cases/RegisterUserUseCase";
 
 describe('RegisterUserUseCase', () => {
-  let userRepository: UserRepository;
+  let userRepository: IUserRepository;
   let registerUserUseCase: RegisterUserUseCase;
 
   beforeEach(() => {

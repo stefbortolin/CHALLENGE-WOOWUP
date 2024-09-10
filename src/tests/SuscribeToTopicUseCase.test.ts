@@ -6,17 +6,18 @@ import { User } from '../core/domain/entities/User';
 import { Topic } from '../core/domain/entities/Topic';
 import { SubscribeToTopicUseCase } from '../core/use-cases/SuscribeToTopicUseCase';
 import { AlertMessage } from '../core/domain/value-objects/AlertMessage';
-import { Alert } from '../core/domain/interface/Alert';
 import { UrgentAlert } from '../core/domain/entities/UrgentAlert';
 import { InformativeAlert } from '../core/domain/entities/InformativeAlert';
 import { RegisterUserUseCase } from '../core/use-cases/RegisterUserUseCase';
 import { RegisterTopicUseCase } from '../core/use-cases/RegisterTopicUseCase';
+import { IUserRepository } from '../core/repositories/interfaces/IUserRepository';
+import { ITopicRepository } from '../core/repositories/interfaces/ITopicRepository';
 
 describe('SubscribeToTopicUseCase', () => {
   let user: User;
   let topic: Topic;
-  let userRepository: UserRepository;
-  let topicRepository: TopicRepository;
+  let userRepository: IUserRepository;
+  let topicRepository: ITopicRepository;
   let registerUserUseCase: RegisterUserUseCase;
   let registerTopicUseCase: RegisterTopicUseCase;
   let subscribeToTopicUseCase: SubscribeToTopicUseCase;

@@ -1,12 +1,12 @@
-import { UserRepository } from '../repositories/UserRepository';
-import { TopicRepository } from '../repositories/TopicRepository';
+import { IUserRepository } from '../repositories/interfaces/IUserRepository';
+import { ITopicRepository } from '../repositories/interfaces/ITopicRepository';
 
 // Use case para suscribir un usuario a un tema, se encarga de verificar que el usuario y el tema existan y en caso de que existan los suscribe.
 export class SubscribeToTopicUseCase {
-    private userRepository: UserRepository;
-    private topicRepository: TopicRepository;
+    private userRepository: IUserRepository;
+    private topicRepository: ITopicRepository;
 
-    constructor(userRepository: UserRepository, topicRepository: TopicRepository) {
+    constructor(userRepository: IUserRepository, topicRepository: ITopicRepository) {
         this.userRepository = userRepository;
         this.topicRepository = topicRepository;
     }

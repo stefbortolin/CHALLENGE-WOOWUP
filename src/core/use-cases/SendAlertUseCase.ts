@@ -2,13 +2,13 @@ import { Topic } from "../domain/entities/Topic";
 import { User } from "../domain/entities/User";
 import { AlertFactory } from "../domain/factories/AlertFactory";
 import AlertType from "../domain/interface/AlertType";
-import { AlertRepository } from "../repositories/AlertRepository";
+import { IAlertRepository } from "../repositories/interfaces/IAlertRepository";
 
 // Use case para enviar una alerta, se encarga de crear la alerta utilizando el factory, guardandola con el repository y notificar al usuario o tema correspondiente mediante los metodos notify del patron Observer.
 export class SendAlertUseCase {
-    private alertRepository: AlertRepository;
+    private alertRepository: IAlertRepository;
 
-    constructor(alertRepository: AlertRepository) {
+    constructor(alertRepository: IAlertRepository) {
         this.alertRepository = alertRepository;
     }
     execute(

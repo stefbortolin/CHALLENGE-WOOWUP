@@ -1,11 +1,12 @@
 //Se pueden registrar temas sobre los cuales se enviarán alertas.
 
 import { Topic } from "../core/domain/entities/Topic";
+import { ITopicRepository } from "../core/repositories/interfaces/ITopicRepository";
 import { TopicRepository } from "../core/repositories/TopicRepository";
 import { RegisterTopicUseCase } from "../core/use-cases/RegisterTopicUseCase";
 
 describe('RegisterTopicUseCase', () => {
-  let topicRepository: TopicRepository;
+  let topicRepository: ITopicRepository;
   let registerTopicUseCase: RegisterTopicUseCase;
 
   beforeEach(() => {

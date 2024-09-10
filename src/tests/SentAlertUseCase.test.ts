@@ -3,13 +3,14 @@ import { User } from "../core/domain/entities/User";
 import { AlertFactory } from "../core/domain/factories/AlertFactory";
 import AlertType from "../core/domain/interface/AlertType";
 import { AlertRepository } from "../core/repositories/AlertRepository";
+import { IAlertRepository } from "../core/repositories/interfaces/IAlertRepository";
 import { SendAlertUseCase } from "../core/use-cases/SendAlertUseCase";
 
 //Se puede enviar una alerta sobre un tema y lo reciben todos los usuarios que han optado recibir alertas de ese tema.
 //Se puede enviar una alerta sobre un tema a un usuario específico, solo lo recibe ese único usuario
 
 describe('SendAlertUseCase', () => {
-    let alertRepository: AlertRepository;
+    let alertRepository: IAlertRepository;
     let sendAlertUseCase: SendAlertUseCase;
     let topic: Topic;
     let user1: User;

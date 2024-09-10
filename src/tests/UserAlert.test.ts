@@ -5,16 +5,16 @@ import { User } from "../core/domain/entities/User";
 import { AlertFactory } from "../core/domain/factories/AlertFactory";
 import AlertType from "../core/domain/interface/AlertType";
 import { AlertRepository } from "../core/repositories/AlertRepository";
-import { TopicRepository } from "../core/repositories/TopicRepository";
+import { IAlertRepository } from "../core/repositories/interfaces/IAlertRepository";
+import { IUserRepository } from "../core/repositories/interfaces/IUserRepository";
 import { UserRepository } from "../core/repositories/UserRepository";
-import { RegisterTopicUseCase } from "../core/use-cases/RegisterTopicUseCase";
 import { RegisterUserUseCase } from "../core/use-cases/RegisterUserUseCase";
 import { SendAlertUseCase } from "../core/use-cases/SendAlertUseCase";
 
 describe('User Alerts', () => {
-    let alertRepository: AlertRepository;
+    let alertRepository: IAlertRepository;
     let sendAlertUseCase: SendAlertUseCase;
-    let userRepository: UserRepository;
+    let userRepository: IUserRepository;
     let registerUserUseCase: RegisterUserUseCase;
     let user1: User;
     let user2: User;
