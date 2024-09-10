@@ -8,6 +8,7 @@ export abstract class Alert {
     private user: User | null;
     private creationDate: Date;
     private expirationDate: Date;
+    private readedByUser: boolean = false;
 
     constructor(message: AlertMessage, topic: Topic | null, user: User | null, creationDate: Date, expirationDate: Date) {
         this.message = message;
@@ -28,6 +29,15 @@ export abstract class Alert {
     public isForSpecificUser(): boolean{
         return this.user !== null;
     }
+
+    public markAsRead():void {
+        this.readedByUser = true;
+    }
+
+    public isReade(): boolean {
+        return this.readedByUser;
+    }
+
     // GETTERS Y SETTERS
     public getMessage(): string {
         return this.message.getMessage();

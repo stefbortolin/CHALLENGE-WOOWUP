@@ -7,8 +7,7 @@ import { UrgentAlert } from "./UrgentAlert";
 
 
 export class AlertManager {
-    private readedAlerts: Alert[] = [];
-    private unreadAlerts: Alert[] = [];
+    private alerts: Alert[] = [];
     private alertSorter: AlertSorter;
 
     constructor(alertSorter: AlertSorter) {
@@ -17,18 +16,18 @@ export class AlertManager {
 
     addAlert(alert: Alert): void {
         if (!alert.isExpired()) {
-            this.unreadAlerts.push(alert);
+            this.alerts.push(alert);
         }
     }
 
     markAlertAsRead(alert: Alert): void {
-        this.readedAlerts.push(alert);
-        this.unreadAlerts = this.unreadAlerts.filter(a => a !== alert);
+        this.alerts.find(a => a === alert)?.markAsRead();
     }
 
     getUnreadNonExpiredAlerts(): Alert[] {
-        const urgentAlerts = this.unreadAlerts.filter(alert => alert instanceof UrgentAlert && !alert.isExpired());
-        const informativeAlerts = this.unreadAlerts.filter(alert => alert instanceof InformativeAlert && !alert.isExpired());
+        const unreadAlerts = this.alerts.filter(alert => !alert.isReade());
+        const urgentAlerts = unreadAlerts.filter(alert => alert instanceof UrgentAlert && !alert.isExpired());
+        const informativeAlerts = unreadAlerts.filter(alert => alert instanceof InformativeAlert && !alert.isExpired());
         
         this.alertSorter.setStrategy(new UrgentAlertSortingStrategy()); 
         const sortedUrgentAlerts = this.alertSorter.sort(urgentAlerts);
