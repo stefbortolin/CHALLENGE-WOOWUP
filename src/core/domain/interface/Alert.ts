@@ -8,7 +8,7 @@ export abstract class Alert {
     private user: User | null;
     private creationDate: Date;
     private expirationDate: Date;
-    private readedByUser: boolean = false;
+    private readedByUser: boolean = false; // En caso de que la alerta sea de un topico, digamos las alertas que fueron enviadas mediante ese topico, estaran como no leidas por defecto.
 
     constructor(message: AlertMessage, topic: Topic | null, user: User | null, creationDate: Date, expirationDate: Date) {
         this.message = message;
