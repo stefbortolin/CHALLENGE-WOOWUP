@@ -1,7 +1,8 @@
 import { Topic } from '../domain/entities/Topic';
+import { ITopicRepository } from './interfaces/ITopicRepository';
 
 // Repositorio para los temas, al igual que los demas repositorios trabajan en memoria directo, es ideal para luego implementar una conexion a base de datos y no afectar el resto del codigo.
-export class TopicRepository {
+export class TopicRepository implements ITopicRepository {
   private topics: Topic[] = [];
 
   public save(topic: Topic): void {

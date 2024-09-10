@@ -5,14 +5,13 @@ import { UrgentAlertSortingStrategy } from "../strategies/UrgentAlertSortingStra
 
 // Clase que se encarga de ordenar las alertas, delegando la responsabilidad de ordenar cada tipo de alerta su implementación específica, y devolviendo primero las urgentes y luego las informativas.
 export class AlertSorter {
-    private urgentStrategy: SortStrategy = new UrgentAlertSortingStrategy();
-    private informativeStrategy: SortStrategy = new InformativeAlertSortingStrategy();
-  
+    private strategy: SortStrategy = new UrgentAlertSortingStrategy();
 
-    sort(alerts: Alert[]): Alert[] {
-      const urgentAlerts = this.urgentStrategy.sort(alerts);
-      const informativeAlerts = this.informativeStrategy.sort(alerts);
+    public setStrategy(strategy: SortStrategy): void {
+        this.strategy = strategy;
+    }
 
-      return [...urgentAlerts, ...informativeAlerts];
+    public sort(alerts: Alert[]): Alert[] {
+        return this.strategy.sort(alerts);
     }
   }

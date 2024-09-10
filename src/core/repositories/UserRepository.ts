@@ -1,7 +1,8 @@
 import { User } from "../domain/entities/User";
+import { IUserRepository } from "./interfaces/IUserRepository";
 
 // Repositorio para los usuarios, al igual que los demas repositorios trabajan en memoria directo, es ideal para luego implementar una conexion a base de datos y no afectar el resto del codigo.
-export class UserRepository {
+export class UserRepository implements IUserRepository {
     private users: User[] = [];
 
     save(user: User): void {

@@ -1,17 +1,17 @@
 import { Alert } from "../interface/Alert";
 import { Publisher } from "../interface/Publisher";
 import { Subscriber } from "../interface/Subscriber";
+import { AlertManager } from "./AlertManager";
 import { AlertSorter } from "./AlertSorter";
 
 export class Topic implements Publisher {
     private topic: string;
     private subscribers: Subscriber[] = [];
-    private alerts: Alert[] = [];
+    private alertManager: AlertManager = new AlertManager(new AlertSorter());
 
     constructor(topic: string, subscribers: Subscriber[] = [], alerts: Alert[] = []) {
         this.topic = topic;
         this.subscribers = subscribers;
-        this.alerts = alerts;
     }
     // Método polimorfico que suscribe a un nuevo usuario al tema.
     public subscribe(subscriber: Subscriber): void {
@@ -25,7 +25,7 @@ export class Topic implements Publisher {
     }
     // Método polimorfico que notifica a todos los suscriptores de una alerta, añadiendo la alerta a la lista de alertas del tema y enviandole a cada suscriptor la alerta.
     public notify(alert: Alert): void {
-        this.alerts.push(alert);
+        this.alertManager.addAlert(alert);
         this.subscribers.forEach(subscriber => {
             subscriber.notify(alert);
         });
@@ -33,9 +33,8 @@ export class Topic implements Publisher {
     // Método que filtra en la lista de alertas las que no han expirado y las ordena segun el tipo que sean (Urgentes e Informativas). Ademas, devuelve si la alerta es para todos los suscriptores del tema o para un usuario en concreto.
     public getNonExpiredAlerts(): { alert: Alert; target: 'topic' | 'specific' }[] {
         const alertSorter = new AlertSorter();
-        const nonExpiredAlerts = this.alerts.filter(alert => !alert.isExpired());
-        const sortedAlerts = alertSorter.sort(nonExpiredAlerts);
-        return sortedAlerts.map(alert => ({
+        const nonExpiredAlerts = this.alertManager.getUnreadNonExpiredAlerts();
+        return nonExpiredAlerts.map(alert => ({
                 alert,
                 target: alert.isForTopicSuscribers() ? 'topic' : 'specific',
             }));
@@ -56,13 +55,5 @@ export class Topic implements Publisher {
 
     public setSubscribers(subscribers: Subscriber[]): void {
         this.subscribers = subscribers;
-    }
-
-    public getAlerts(): Alert[] {
-        return this.alerts;
-    }
-
-    public setAlerts(alerts: Alert[]): void {
-        this.alerts = alerts;
     }
 }
