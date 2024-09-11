@@ -12,6 +12,7 @@ export class SendAlertUseCase {
         this.alertRepository = alertRepository;
     }
     execute(
+        id: string,
         type: AlertType,
         message: string,
         user: User | null, // Para alertas enviadas a usuarios concretos se recibe un user como parametro, y el tema se envia en null.
@@ -20,6 +21,7 @@ export class SendAlertUseCase {
         expirationDate: Date
     ): void {
         const alert = AlertFactory.createAlert(
+            id,
             type,
             message,
             user,

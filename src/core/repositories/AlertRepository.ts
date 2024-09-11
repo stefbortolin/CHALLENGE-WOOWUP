@@ -18,11 +18,19 @@ export class AlertRepository implements IAlertRepository {
         return this.alerts;
     }
 
+    getAlertById(alertId: string): Alert | undefined {
+        return this.alerts.find(a => a.getId() === alertId);
+    }
+
     getAlertsForUser(username: string): Alert[] {
         return this.alerts.filter(alert => alert.getUser()?.getUsername() === username);
     }
 
     getAlertsForTopic(topic: string): Alert[] {
         return this.alerts.filter(alert => alert.getTopic()?.getTopic() === topic);
+    }
+
+    markAsRead(alert: Alert): void {
+        this.alerts.find(a => a === alert)?.markAsRead();
     }
 }

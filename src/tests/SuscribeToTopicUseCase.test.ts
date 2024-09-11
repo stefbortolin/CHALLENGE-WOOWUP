@@ -12,6 +12,7 @@ import { RegisterUserUseCase } from '../core/use-cases/RegisterUserUseCase';
 import { RegisterTopicUseCase } from '../core/use-cases/RegisterTopicUseCase';
 import { IUserRepository } from '../core/repositories/interfaces/IUserRepository';
 import { ITopicRepository } from '../core/repositories/interfaces/ITopicRepository';
+import { v4 as uuidv4 } from 'uuid';
 
 describe('SubscribeToTopicUseCase', () => {
   let user: User;
@@ -45,7 +46,7 @@ describe('SubscribeToTopicUseCase', () => {
 
   it('should allow a user to receive an alert from a topic', () => {
     const alertMessage = AlertMessage.create('New urgent alert');
-    const alert = new UrgentAlert(alertMessage, topic, null, new Date(), new Date(new Date().getTime() + 100000));
+    const alert = new UrgentAlert(uuidv4(),alertMessage, topic, null, new Date(), new Date(new Date().getTime() + 100000));
     topic.subscribe(user);
     topic.notify(alert);
 
@@ -57,7 +58,7 @@ describe('SubscribeToTopicUseCase', () => {
     topic.unsubscribe(user);
 
     const alertMessage = AlertMessage.create('New invormative alert');
-    const alert = new InformativeAlert(alertMessage, topic, null, new Date(), new Date(new Date().getTime() + 100000));
+    const alert = new InformativeAlert(uuidv4(), alertMessage, topic, null, new Date(), new Date(new Date().getTime() + 100000));
     topic.notify(alert);
 
     expect(user.getUnreadNonExpiredAlerts()).not.toContain(alert);

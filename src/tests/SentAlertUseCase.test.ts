@@ -5,7 +5,7 @@ import AlertType from "../core/domain/interface/AlertType";
 import { AlertRepository } from "../core/repositories/AlertRepository";
 import { IAlertRepository } from "../core/repositories/interfaces/IAlertRepository";
 import { SendAlertUseCase } from "../core/use-cases/SendAlertUseCase";
-
+import { v4 as uuidv4 } from 'uuid';
 //Se puede enviar una alerta sobre un tema y lo reciben todos los usuarios que han optado recibir alertas de ese tema.
 //Se puede enviar una alerta sobre un tema a un usuario específico, solo lo recibe ese único usuario
 
@@ -35,6 +35,7 @@ describe('SendAlertUseCase', () => {
         const expirationDate = new Date(creationDate.getTime() + 1000000); 
 
         sendAlertUseCase.execute(
+            uuidv4(),
             AlertType.URGENT,
             'Urgent alert message',
             null, 

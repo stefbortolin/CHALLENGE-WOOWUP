@@ -3,6 +3,7 @@ import { User } from "../entities/User";
 import { AlertMessage } from "../value-objects/AlertMessage";
 
 export abstract class Alert {
+    private id: string;
     private message: AlertMessage;
     private topic: Topic | null;
     private user: User | null;
@@ -10,7 +11,8 @@ export abstract class Alert {
     private expirationDate: Date;
     private readedByUser: boolean = false; // En caso de que la alerta sea de un topico, digamos las alertas que fueron enviadas mediante ese topico, estaran como no leidas por defecto.
 
-    constructor(message: AlertMessage, topic: Topic | null, user: User | null, creationDate: Date, expirationDate: Date) {
+    constructor(id:string, message: AlertMessage, topic: Topic | null, user: User | null, creationDate: Date, expirationDate: Date) {
+        this.id = id;
         this.message = message;
         this.topic = topic;
         this.user = user;
@@ -39,6 +41,13 @@ export abstract class Alert {
     }
 
     // GETTERS Y SETTERS
+    public getId(): string {
+        return this.id;
+    }
+
+    public setId(id: string): void {
+        this.id = id;
+    }
     public getMessage(): string {
         return this.message.getMessage();
     }

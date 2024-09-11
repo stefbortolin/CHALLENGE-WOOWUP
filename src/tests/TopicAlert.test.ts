@@ -13,6 +13,7 @@ import { UserRepository } from "../core/repositories/UserRepository";
 import { RegisterTopicUseCase } from "../core/use-cases/RegisterTopicUseCase";
 import { RegisterUserUseCase } from "../core/use-cases/RegisterUserUseCase";
 import { SendAlertUseCase } from "../core/use-cases/SendAlertUseCase";
+import { v4 as uuidv4 } from 'uuid';
 
 describe('Topic Alerts', () => {
     let alertRepository: IAlertRepository;
@@ -45,11 +46,11 @@ describe('Topic Alerts', () => {
         const now = new Date();
         const expirationDate = new Date(now.getTime() + 1000000);
 
-        sendAlertUseCase.execute(AlertType.INFORMATIVE, 'Info 1', null, topic, now, expirationDate);
-        sendAlertUseCase.execute(AlertType.URGENT, 'Urgent 1', null, topic, now, expirationDate);
-        sendAlertUseCase.execute(AlertType.INFORMATIVE, 'Info 2', null, topic, now, expirationDate);
-        sendAlertUseCase.execute(AlertType.URGENT, 'Urgent 2', null, topic, now, expirationDate);
-        sendAlertUseCase.execute(AlertType.INFORMATIVE, 'Info 3', null, topic, now, expirationDate);
+        sendAlertUseCase.execute(uuidv4(), AlertType.INFORMATIVE, 'Info 1', null, topic, now, expirationDate);
+        sendAlertUseCase.execute(uuidv4(), AlertType.URGENT, 'Urgent 1', null, topic, now, expirationDate);
+        sendAlertUseCase.execute(uuidv4(), AlertType.INFORMATIVE, 'Info 2', null, topic, now, expirationDate);
+        sendAlertUseCase.execute(uuidv4(), AlertType.URGENT, 'Urgent 2', null, topic, now, expirationDate);
+        sendAlertUseCase.execute(uuidv4(), AlertType.INFORMATIVE, 'Info 3', null, topic, now, expirationDate);
     });
 
     test('should retrieve all non-expired alerts for a topic, sorted correctly', () => {
